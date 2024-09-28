@@ -6,7 +6,7 @@
 /*   By: yaperalt <yaperalt@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 03:39:34 by yaperalt          #+#    #+#             */
-/*   Updated: 2024/09/27 04:15:38 by yaperalt         ###   ########.fr       */
+/*   Updated: 2024/09/28 15:24:09 by yaperalt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_head;
-	t_list	*new_node;
+	t_list	*new_l;
+	t_list	*new_n;
 
-	if (!lst || !del || !f)
+	if (!lst || !f || !del)
 		return (NULL);
-	new_head = NULL;
-	new_node = NULL;
+	new_l = NULL;
 	while (lst)
 	{
-		if (!f)
-			new_node = ft_lstnew(lst->content);
-		else
-			new_node = ft_lstnew(f(lst->content));
-		if (!new_node)
+		new_n = ft_lstnew(f(lst->content));
+		if (!new_n)
 		{
-			ft_lstclear(&new_head, del);
+			ft_lstclear(&new_l, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&new_head, new_node);
+		ft_lstadd_back(&new_l, new_n);
 		lst = lst->next;
 	}
-	return (new_head);
+	return (new_l);
 }
