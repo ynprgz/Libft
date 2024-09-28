@@ -81,8 +81,8 @@ char	**ft_split(char const *s, char c)
 // 	char	**split;
 // 	int		i;
 
-// 	str = "hola chola chola chola";
-// 	split = ft_split(str, ' ');
+// 	str = "hola/chola/chola/chola";
+// 	split = ft_split(str, '/');
 // 	if (split)
 // 	{
 // 		i = 0;
